@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Webgame</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f8c8dc, #fcd9e8); /* Зөөлөн эмэгтэй өнгөний градиент */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    #game-area {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      background: #fff;
+      border: 3px solid #333;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #cat {
+      width: 100px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    #cat:active {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    #score {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #111;
+    }
+
+    #like-text {
+      margin-top: 10px;
+      font-size: 20px;
+      color: #e91e63;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Хөөрхөнөөг бариарай 😼</h1>
+
+  <div id="game-area">
+    <img src="assets/tsatsral.png" alt="Meme Cat" id="cat">
+  </div>
+
+  <div id="score">Score: 0</div>
+  <div id="like-text">таалагджинуу хх</div>
+
+  <script>
+    let score = 0;
+    const cat = document.getElementById('cat');
+    const scoreDisplay = document.getElementById('score');
+
+    cat.addEventListener('click', () => {
+      score++;
+      scoreDisplay.textContent = `Score: ${score}`;
+
+      // Муурыг санамсаргүй байрлалд шилжүүлэх
+      const maxX = 200;
+      const maxY = 200;
+      const x = Math.floor(Math.random() * maxX);
+      const y = Math.floor(Math.random() * maxY);
+      cat.style.position = "absolute";
+      cat.style.left = x + "px";
+      cat.style.top = y + "px";
+    });
+  </script>
+
+</body>
+</html>
