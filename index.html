@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mini Webgame</title>
+  <title>mini game</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #f8c8dc, #fcd9e8); /* Зөөлөн эмэгтэй өнгөний градиент */
+      background: linear-gradient(135deg, #f8c8dc, #fcd9e8);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -28,16 +28,18 @@
       background: #fff;
       border: 3px solid #333;
       border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
     }
 
     #cat {
       width: 100px;
+      position: absolute;
+      left: 100px;
+      top: 100px;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.15s;
+      touch-action: manipulation;
+      user-select: none;
     }
 
     #cat:active {
@@ -72,17 +74,18 @@
     let score = 0;
     const cat = document.getElementById('cat');
     const scoreDisplay = document.getElementById('score');
+    const gameArea = document.getElementById('game-area');
 
     cat.addEventListener('click', () => {
       score++;
       scoreDisplay.textContent = `Score: ${score}`;
 
-      // Муурыг санамсаргүй байрлалд шилжүүлэх
-      const maxX = 200;
-      const maxY = 200;
+      const maxX = gameArea.clientWidth - cat.clientWidth;
+      const maxY = gameArea.clientHeight - cat.clientHeight;
+
       const x = Math.floor(Math.random() * maxX);
       const y = Math.floor(Math.random() * maxY);
-      cat.style.position = "absolute";
+
       cat.style.left = x + "px";
       cat.style.top = y + "px";
     });
